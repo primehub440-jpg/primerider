@@ -17,19 +17,20 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Pre-download Gradle and fix wrapper
+      - name: Fix Gradle Wrapper with direct download
         run: |
           rm -f android/gradle/wrapper/gradle-wrapper.jar
           wget -O android/gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.13.0/gradle/wrapper/gradle-wrapper.jar
-          wget -O /tmp/gradle.zip https://services.gradle.org/distributions/gradle-8.13.0-all.zip
+          wget -O /tmp/gradle.zip https://downloads.gradle-dn.com/distributions/gradle-8.13.0-all.zip
+          ls -lh /tmp/gradle.zip
           echo "distributionBase=GRADLE_USER_HOME" > android/gradle/wrapper/gradle-wrapper.properties
           echo "distributionPath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
           echo "distributionUrl=file\:///tmp/gradle.zip" >> android/gradle/wrapper/gradle-wrapper.properties
           echo "networkTimeout=10000" >> android/gradle/wrapper/gradle-wrapper.properties
-          echo "validateDistributionUrl=true" >> android/gradle/wrapper/gradle-wrapper.properties
           echo "zipStoreBase=GRADLE_USER_HOME" >> android/gradle/wrapper/gradle-wrapper.properties
           echo "zipStorePath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
           chmod +x android/gradlew
+          cat android/gradle/wrapper/gradle-wrapper.properties
 
       - run: flutter pub get
       - run: flutter build apk --release
