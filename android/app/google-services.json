@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "240271247560",
+    "project_id": "primehub-5ef30",
+    "storage_bucket": "primehub-5ef30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240271247560:android:2b7a5f40735936d09d7dfd",
+        "android_client_info": {
+          "package_name": "com.primehub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBIlVaSAXM_tV-GplCpk4JkIUZyc-vcoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240271247560:android:11d3df05b1a88e1b9d7dfd",
+        "android_client_info": {
+          "package_name": "com.primehub.vendor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBIlVaSAXM_tV-GplCpk4JkIUZyc-vcoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240271247560:android:9a020dca34d5d4229d7dfd",
+        "android_client_info": {
+          "package_name": "com.primerider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBIlVaSAXM_tV-GplCpk4JkIUZyc-vcoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
