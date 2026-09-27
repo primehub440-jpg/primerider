@@ -6,20 +6,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Delete broken wrapper jar
-        run: |
-          rm -f android/gradle/wrapper/gradle-wrapper.jar
-          wget -O android/gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.13.0/gradle/wrapper/gradle-wrapper.jar
-          cat android/gradle/wrapper/gradle-wrapper.properties
-
-      - uses: actions/setup-java@v5
+      - name: Setup Java 17
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Pre-download Gradle and fix wrapper
+        run: |
+          rm -f android/gradle/wrapper/gradle-wrapper.jar
+          wget -O android/gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.13.0/gradle/wrapper/gradle-wrapper.jar
+          wget -O /tmp/gradle.zip https://services.gradle.org/distributions/gradle-8.13.0-all.zip
+          echo "distributionBase=GRADLE_USER_HOME" > android/gradle/wrapper/gradle-wrapper.properties
+          echo "distributionPath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "distributionUrl=file\:///tmp/gradle.zip" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "networkTimeout=10000" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "validateDistributionUrl=true" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "zipStoreBase=GRADLE_USER_HOME" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "zipStorePath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
+          chmod +x android/gradlew
 
       - run: flutter pub get
       - run: flutter build apk --release
